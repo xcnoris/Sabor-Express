@@ -1,5 +1,12 @@
 import os
-restaurantes = []
+restaurantes = ['Pizza', 'Sushi']
+
+def main():
+    os.system('cls')
+    exibir_nome_do_programa()
+    exibir_opcoes_menu()
+    escolher_opcao()
+
 
 def exibir_nome_do_programa():
 
@@ -20,23 +27,33 @@ def exibir_opcoes_menu():
     print('4. sair\n')
 
 def finalizar_app():
-    os.system('cls')
-    print('Encerrando app :)\n')
+    exibir_subtitulo('Finalizando app :)')
 
-def opcao_invalida():
-    print('Opção inválida!\n')
-    input('Digite uma tecla para voltar ao menu principal:  ')
-    main()
-
-def cadastrar_novo_restaurante():
-    os.system('cls')
-    print('Cadastro de novos restaurantes\n')
-    nome_nome_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-    restaurantes.append(nome_nome_restaurante)
-    print(f'O restaurante {nome_nome_restaurante} foi cadastrado com sucess!')
+def voltar_ao_menu_principal():
     input('\nDigite uma tecla para voltar ao menu principal:  ')
     main()
 
+def exibir_subtitulo(texto):
+    os.system('cls')
+    print(texto, '\n')
+
+def opcao_invalida():
+    print('Opção inválida!\n')
+    voltar_ao_menu_principal()
+
+def cadastrar_novo_restaurante():
+    exibir_subtitulo('Cadastrar Restaurante')
+    nome_nome_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
+    restaurantes.append(nome_nome_restaurante)
+    print(f'O restaurante {nome_nome_restaurante} foi cadastrado com sucessos!')
+    voltar_ao_menu_principal()
+
+def listar_restaurantes():
+    exibir_subtitulo('Listando restaurante')
+
+    for restaurante in restaurantes:
+        print(f'.{restaurante}')
+    voltar_ao_menu_principal()
 
 def escolher_opcao():
     try:
@@ -45,7 +62,7 @@ def escolher_opcao():
             case 1:
                 cadastrar_novo_restaurante()
             case 2:
-                print('Listar restaurantes')
+                listar_restaurantes()
             case 3:
                 print('Ativar restaurantes')
             case 4:
@@ -55,13 +72,5 @@ def escolher_opcao():
     except:
         opcao_invalida()
 
-def main():
-    os.system('cls')
-    exibir_nome_do_programa()
-    exibir_opcoes_menu()
-    escolher_opcao()
-
-
 if __name__ == '__main__':
     main()
-
